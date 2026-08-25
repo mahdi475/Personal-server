@@ -27,6 +27,7 @@ networking, backend development, security, deployment and DevOps.
 - [x] Linux server environment
 - [x] SSH configuration
 - [x] Firewall configuration
+- [x] Nginx web server
 - [ ] FastAPI backend
 - [ ] PostgreSQL database
 - [ ] Authentication
@@ -61,6 +62,19 @@ Verified so far:
 - UFW firewall active with SSH allowed on port 22
 - Internet access tested with `ping`
 - HTTPS access tested with `curl`
+
+## Current Deployment
+
+The project currently runs in an Ubuntu Server VM using Oracle VM VirtualBox.
+
+Nginx is serving a custom HTML page and the page is accessible from the
+Windows host through VirtualBox port forwarding.
+
+Current local test URL:
+
+`http://127.0.0.1:8080`
+
+See [docs/nginx.md](docs/nginx.md) for the full setup.
 
 ## Architecture
 
