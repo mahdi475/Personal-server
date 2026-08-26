@@ -1,7 +1,7 @@
 # Nginx Web Server
 
 Nginx was installed on the Ubuntu Server and configured to serve a custom
-HTML page.
+website.
 
 ## Installation
 
@@ -10,27 +10,64 @@ sudo apt update
 sudo apt install nginx -y
 ```
 
+## Custom Site
+
+The website files are stored in:
+
+```text
+/var/www/personal-server
+```
+
+The Nginx site configuration is:
+
+```text
+/etc/nginx/sites-available/personal-server
+```
+
+The configuration is enabled through:
+
+```text
+/etc/nginx/sites-enabled/personal-server
+```
+
+## Configuration
+
+The configuration used by the server is stored in:
+
+```text
+nginx/personal-server.conf
+```
+
 ## Verification
 
-Nginx was verified with:
+Nginx configuration was tested with:
 
 ```bash
-sudo systemctl status nginx
+sudo nginx -t
 ```
 
 Result:
 
 ```text
-Active: active (running)
+syntax is ok
+test is successful
 ```
 
-The server was also tested locally with:
+Nginx was verified as running with:
+
+```bash
+sudo systemctl status nginx
+```
+
+The service was active and running.
+
+The website was tested locally with:
 
 ```bash
 curl http://localhost
 ```
 
-The response returned the custom HTML page.
+The server returned the custom HTML page.
 
 ## Firewall
 
@@ -40,20 +77,20 @@ HTTP traffic was allowed through UFW:
 sudo ufw allow 80/tcp
 ```
 
-## Local Deployment
+## Local Access
 
-VirtualBox NAT port forwarding was configured:
+VirtualBox NAT port forwarding was configured to forward:
 
 ```text
-Host: 8080
-Guest: 80
+Host port: 8080
+Guest port: 80
 ```
 
-The custom page was then accessible from the Windows host at:
+The website was then accessible from the Windows host at:
 
 ```text
 http://127.0.0.1:8080
 ```
 
-This confirms that the Ubuntu server is successfully serving a custom website
-through Nginx.
+This confirms that the Ubuntu server is serving the custom website through
+Nginx.
