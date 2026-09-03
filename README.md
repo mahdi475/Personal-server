@@ -28,12 +28,12 @@ networking, backend development, security, deployment and DevOps.
 - [x] SSH configuration
 - [x] Firewall configuration
 - [x] Nginx web server
-- [ ] FastAPI backend
+- [x] FastAPI backend
+- [x] Nginx reverse proxy
 - [ ] PostgreSQL database
 - [ ] Authentication
 - [ ] Docker
 - [ ] Redis
-- [ ] Nginx reverse proxy
 - [ ] HTTPS
 - [ ] Logging
 - [ ] Monitoring
@@ -75,6 +75,51 @@ Current local test URL:
 `http://127.0.0.1:8080`
 
 See [docs/nginx.md](docs/nginx.md) for the full setup.
+
+## Current Implementation
+
+The server currently includes:
+
+- Ubuntu Server 26.04 LTS
+- SSH remote administration
+- UFW firewall
+- Nginx web server
+- Nginx reverse proxy
+- FastAPI backend
+- Uvicorn application server
+- Python virtual environment
+- Git and GitHub integration through SSH
+
+### API
+
+The FastAPI backend is available internally on port `8000`.
+
+Nginx exposes the API through:
+
+```text
+/api/
+```
+
+Example:
+
+```bash
+curl http://localhost/api/
+```
+
+Response:
+
+```json
+{
+    "message": "Mahdi's Personal Server API is running!"
+}
+```
+
+### Project Documentation
+
+- [Server Setup](docs/server-setup.md)
+- [Linux Permissions](docs/linux-permissions.md)
+- [Nginx](docs/nginx.md)
+- [FastAPI](docs/fastapi.md)
 
 ## Architecture
 
