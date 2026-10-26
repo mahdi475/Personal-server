@@ -32,6 +32,7 @@ Main settings:
 | `--host 127.0.0.1` | The API only listens inside the server, so outside traffic must go through Nginx |
 | `--root-path /api` | Tells FastAPI that Nginx serves it under `/api`, so the API docs work at `/api/docs` |
 | `Restart=always` | systemd starts the API again if it stops |
+| `After=postgresql.service` | At boot, the API starts after the database |
 | `WantedBy=multi-user.target` | The service starts at boot |
 
 ## Installation
@@ -59,5 +60,27 @@ journalctl -u personal-server-api -f        # Follow the API logs
 
 ## Verification
 
-Pending. To be recorded after the service has been installed and the server
-has been rebooted.
+After installation, the service was checked with:
+
+```bash
+systemctl status personal-server-api --no-pager
+```
+
+Result:
+
+```text
+Loaded: loaded (/etc/systemd/system/personal-server-api.service; enabled; preset: enabled)
+Active: active (running)
+```
+
+The API was then opened from the Windows host through Nginx at:
+
+```text
+http://127.0.0.1:8080/api/docs
+```
+
+The Swagger UI loaded, and `GET /` returned `200` with the JSON message. The
+response header `server: nginx/1.28.3 (Ubuntu)` confirms that the request went
+through Nginx.
+
+Still pending: confirming that the service starts by itself after a reboot.

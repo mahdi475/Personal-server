@@ -121,6 +121,7 @@ Response:
 - [Nginx](docs/nginx.md)
 - [FastAPI](docs/fastapi.md)
 - [Systemd Service](docs/systemd.md)
+- [PostgreSQL](docs/postgresql.md)
 
 ## Architecture
 
