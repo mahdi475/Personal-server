@@ -30,7 +30,7 @@ networking, backend development, security, deployment and DevOps.
 - [x] Nginx web server
 - [x] FastAPI backend
 - [x] Nginx reverse proxy
-- [ ] PostgreSQL database
+- [x] PostgreSQL database
 - [ ] Authentication
 - [ ] Docker
 - [ ] Redis
@@ -89,6 +89,8 @@ The server currently includes:
 - Uvicorn application server
 - Python virtual environment
 - Git and GitHub integration through SSH
+- systemd service for the API
+- PostgreSQL database
 
 ### API
 
@@ -122,6 +124,8 @@ Response:
 - [FastAPI](docs/fastapi.md)
 - [Systemd Service](docs/systemd.md)
 - [PostgreSQL](docs/postgresql.md)
+- [Authentication](docs/authentication.md)
+- [Testing](docs/testing.md)
 
 ## Architecture
 

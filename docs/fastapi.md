@@ -19,15 +19,20 @@ FastAPI provides the API layer while Uvicorn is used as the ASGI server.
 ```text
 Personal-server/
 ├── backend/
-│   ├── main.py
-│   ├── config.py
-│   ├── database.py
-│   ├── models.py
-│   ├── schemas.py
+│   ├── main.py            # App, health check
+│   ├── auth.py            # Register, login
+│   ├── notes.py           # Notes endpoints
+│   ├── security.py        # Password hashing, tokens
+│   ├── models.py          # Database tables
+│   ├── schemas.py         # Request/response formats
+│   ├── database.py        # PostgreSQL connection
+│   ├── config.py          # Settings from .env
+│   ├── tests/             # Automated tests
 │   ├── requirements.txt
 │   └── .env.example
 ├── deploy/
-│   └── personal-server-api.service
+│   ├── personal-server-api.service
+│   └── sql/
 ├── nginx/
 │   └── personal-server.conf
 └── docs/

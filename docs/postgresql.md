@@ -71,6 +71,9 @@ The `notes` table is created automatically when the API starts.
 All endpoints are also available through Nginx under `/api/`, for example
 `/api/notes`, and can be tested in the browser at `/api/docs`.
 
+Since authentication was added, the `/notes` endpoints require login and each
+user only sees their own notes. See [authentication.md](authentication.md).
+
 ## Useful Commands
 
 ```bash
@@ -88,4 +91,25 @@ SELECT * FROM notes;    -- Show all notes
 
 ## Verification
 
-Pending. To be recorded after the setup has been run on the server.
+After the API was restarted, the new endpoints appeared in the Swagger UI at:
+
+```text
+http://127.0.0.1:8080/api/docs
+```
+
+Notes were created with `POST /notes` in the Swagger UI. The rows were then
+checked directly in PostgreSQL:
+
+```bash
+sudo -u postgres psql -d personal_server -c "SELECT * FROM notes;"
+```
+
+Result (shortened):
+
+```text
+ id |           title           |                content
+----+---------------------------+----------------------------------------
+  2 | min första anteckning lol | Hälsar dig från min PostgreSQL mannen!
+```
+
+This confirms the full path: browser → Nginx → FastAPI → PostgreSQL.
