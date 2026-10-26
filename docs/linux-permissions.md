@@ -27,59 +27,59 @@ A test file was created:
 
 ```text
 project.txt
+```
 
 Its ownership was changed to:
 
+```text
 mahdi:developers
+```
 
 The resulting permissions were:
 
+```text
 -rw-rw-r-- 1 mahdi developers project.txt
+```
 
 This means:
 
-Permission	Meaning
-rw-	Owner can read and write
-rw-	Group can read and write
-r--	Others can only read
-Verification
+| Permission | Meaning |
+| --- | --- |
+| `rw-` | Owner can read and write |
+| `rw-` | Group can read and write |
+| `r--` | Others can only read |
 
-The tester user was used to test the permissions.
+## Verification
+
+The `tester` user was used to test the permissions.
 
 Command:
 
+```bash
 sudo -u tester bash
+```
 
 Then:
 
+```bash
 echo "tester was here" >> project.txt
+```
 
 Result:
 
+```text
 bash: project.txt: Permission denied
+```
 
-This confirms that a user who is not a member of the developers group cannot
+This confirms that a user who is not a member of the `developers` group cannot
 write to the file.
 
-What This Demonstrates
+## What This Demonstrates
 
 The test demonstrates Linux's three basic permission categories:
 
-owner
-group
-others
+- owner
+- group
+- others
 
 and shows how file ownership and group membership affect access to files.
-
-
-
-### Sedan
-
-
-1. **Ctrl + S**
-2. Gå till terminalen i VS Code.
-3. Kör:
-
-
-```bash
-git status

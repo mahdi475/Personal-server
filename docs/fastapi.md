@@ -17,9 +17,12 @@ FastAPI provides the API layer while Uvicorn is used as the ASGI server.
 ## Project structure
 
 ```text
-personal-server/
+Personal-server/
 ├── backend/
-│   └── main.py
+│   ├── main.py
+│   └── requirements.txt
+├── deploy/
+│   └── personal-server-api.service
 ├── nginx/
 │   └── personal-server.conf
 └── docs/
@@ -50,21 +53,25 @@ The endpoint returns:
 
 ## Running FastAPI
 
-A Python virtual environment is used to isolate the backend dependencies.
+A Python virtual environment in `backend/venv` is used to isolate the backend
+dependencies.
 
-Activate the virtual environment:
+On the server, the API is run by systemd. See [systemd.md](systemd.md).
+
+For a manual test, stop the service first and start Uvicorn by hand:
 
 ```bash
+sudo systemctl stop personal-server-api
+cd backend
 source venv/bin/activate
+uvicorn main:app --host 127.0.0.1 --port 8000 --root-path /api
 ```
 
-Start the FastAPI application with Uvicorn:
+Uvicorn listens on `127.0.0.1:8000`, so the API can only be reached from inside
+the server. Traffic from outside has to go through Nginx.
 
-```bash
-uvicorn main:app --host 0.0.0.0 --port 8000
-```
-
-Uvicorn listens on port `8000`.
+`--root-path /api` tells FastAPI that Nginx serves it under `/api`, so the
+interactive API docs work at `/api/docs`.
 
 ## Nginx reverse proxy
 

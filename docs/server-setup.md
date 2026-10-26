@@ -63,27 +63,24 @@ that still needs more testing is marked as pending instead of guessed.
 - The VM disk is configured as 25 GB, while the root filesystem currently uses a
   12G logical volume.
 
-## Not Configured Yet
+## Later Updates
+
+This file records the initial setup. Later work is documented separately:
+
+- [Linux Permissions](linux-permissions.md)
+- [Nginx](nginx.md)
+- [FastAPI](fastapi.md)
+- [Systemd Service](systemd.md)
+
+Remote SSH login from Windows works through VirtualBox NAT port forwarding.
+On the server, these logins show up as coming from `10.0.2.2`, the VirtualBox
+NAT gateway.
+
+## Still Pending
 
 - SSH key-based authentication
-- Remote SSH login from Windows
-- FastAPI backend
 - PostgreSQL
 - Docker
-- Nginx
 - HTTPS
 - Monitoring
 - CI/CD
-
-## Next Manual Steps
-
-Before marking remote access as complete, test SSH from Windows. With VirtualBox
-NAT, this may require port forwarding or a different network mode before Windows
-can connect to the Ubuntu guest.
-
-The next server-side checks are:
-
-```bash
-sudo systemctl status ssh
-sudo ufw status
-```
